@@ -1,5 +1,6 @@
 from collections import deque
 from fractions import Fraction
+from unicodedata import numeric
 
 def parse_facts(facts):
     unit_graph = {}
@@ -36,20 +37,39 @@ unit_dict = {
     "tablespoon": "tbsp",
     # other unit conversions here
 }
-
+unicode_fractions = [
+    "↉", 
+    "⅟", 
+    "⅒", 
+    "½", 
+    "⅓", 
+    "¼", 
+    "⅕", 
+    "⅙", 
+    "⅐", 
+    "⅛", 
+    "⅑", 
+    "⅔", 
+    "⅖", 
+    "¾", 
+    "⅗",
+    "⅜",
+    "⅘",
+    "⅚",
+    "⅝", 
+    "⅞"
+]
 def standardize_units(ingredient):
     output = []
+    ingredient = ingredient.replace("–", "-").replace("-", " - ")
     for part in ingredient.split(" "):
-        print("Test: ", part)
         if part[0].isdigit():
-            
-            range = part.replace("–", "-").split("-")
-            if len(range) == 1:
-                output.append(Fraction(part))
+            if part[-1] in unicode_fractions:
+                output.append((Fraction(part[:-1]) + Fraction(numeric(part[-1]))).limit_denominator())
             else:
-                output.append(Fraction(range[0]))
-                output.append("-")
-                output.append(Fraction(range[1]))
+                output.append(Fraction(part).limit_denominator())
+        elif part in unicode_fractions:
+            output.append(Fraction(numeric(part)).limit_denominator())
         else:
             output.append(part)
     real_output = []
@@ -57,7 +77,7 @@ def standardize_units(ingredient):
         if type(part) is Fraction:
             if i > 0 and type(output[i-1]) is Fraction:
                 continue
-            elif i < len(output)-2 and type(output[i+1]) is Fraction:
+            elif i <= len(output)-2 and type(output[i+1]) is Fraction:
                 real_output.append(f"{part + output[i+1]}")
             else:
                 quotient = part.numerator // part.denominator
