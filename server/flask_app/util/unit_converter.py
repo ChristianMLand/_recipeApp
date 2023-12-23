@@ -61,11 +61,19 @@ unicode_fractions = [
 ]
 def standardize_units(ingredient):
     output = []
-    ingredient = ingredient.replace("–", "-").replace("-", " - ")
+    ingredient = ingredient.replace("–", "-").replace("-", " - ").replace("(", " ( ").replace(")", " ) ")
     for part in ingredient.split(" "):
         if part and part[0].isdigit():
             if part[-1] in unicode_fractions:
                 output.append((Fraction(part[:-1]) + Fraction(numeric(part[-1]))).limit_denominator())
+            elif part[-1].isalpha():
+                num_end = 1
+                for i, c in enumerate(part):
+                    if not c.isdigit():
+                        num_end = i
+                        break
+                output.append(Fraction(part[:num_end]).limit_denominator())
+                output.append(part[num_end:])
             else:
                 output.append(Fraction(part).limit_denominator())
         elif part in unicode_fractions:
