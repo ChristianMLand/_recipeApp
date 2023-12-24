@@ -35,7 +35,7 @@ def create_recipe():
             data = {
                 "user_id" : session["id"],
                 "title" : scraper.title(),
-                "time" : scraper.total_time(),
+                "time" : scraper.total_time() if scraper.total_time() <= 1440 else 0,
                 "servings" : scraper.yields().split(" ")[0],
                 "ingredients" : [standardize_units(ingredient) for ingredient in scraper.ingredients()],
                 "instructions" : scraper.instructions_list(),
