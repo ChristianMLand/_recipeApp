@@ -61,7 +61,7 @@ unicode_fractions = [
 ]
 def standardize_units(ingredient):
     output = []
-    ingredient = ingredient.replace("–", "-").replace("-", " - ").replace("(", " ( ").replace(")", " ) ").replace('"', ' in ')
+    ingredient = ingredient.replace("–", "-").replace("-", " - ").replace("(", " ( ").replace(")", " ) ").replace('″', ' in ')
     for part in ingredient.split(" "):
         if part and part[0].isdigit():
             if part[-1] in unicode_fractions:
