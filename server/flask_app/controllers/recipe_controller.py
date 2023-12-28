@@ -17,7 +17,7 @@ def get_all_recipes():
 @app.get("/api/recipes/<id>")
 def get_recipe(id):
     one_recipe = Recipe.retrieve_one(id=id)
-    print(one_recipe)
+    # print(one_recipe)
     return jsonify(one_recipe.as_json())
 
 @app.delete("/api/recipes/<id>")
@@ -32,10 +32,11 @@ def create_recipe():
     if request.args.get("extract"):
         try:
             scraper = scrape_me(request.json.get("url"), wild_mode=True)
+            # print(scraper.ingredients())
             data = {
                 "user_id" : session["id"],
                 "title" : scraper.title(),
-                "time" : scraper.total_time(),
+                "time" : scraper.total_time() if scraper.total_time() <= 1440 else 0,
                 "servings" : scraper.yields().split(" ")[0],
                 "ingredients" : [standardize_units(ingredient) for ingredient in scraper.ingredients()],
                 "instructions" : scraper.instructions_list(),

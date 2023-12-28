@@ -1,7 +1,7 @@
 import style from './tab.module.css';
 
-export default function Tab({ children:contents }) {
+export default function Tab({ children:contents, handlers }) {
     return (
-        <div className={style.tabCard}>{contents}</div>
+        <div {...handlers} className={style.tabCard}>{contents}</div>
     );
 }
