@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { RecipeForm } from '../components';
 import { updateRecipe, getRecipe } from '../utils/apiServices.js';
 import { useParams, useNavigate } from 'react-router-dom';
+import RecipeFormV2 from '../components/RecipeFormV2.jsx';
 
 
 export default function EditRecipe() {
@@ -23,7 +24,7 @@ export default function EditRecipe() {
 
     return (
         <div>
-            <RecipeForm 
+            <RecipeFormV2
                 initialRecipe={recipe}
                 service={data => updateRecipe(id, data)}
                 onSuccess={() => navigate(`/recipes/${id}`)}

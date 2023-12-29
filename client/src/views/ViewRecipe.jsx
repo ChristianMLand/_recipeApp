@@ -7,7 +7,7 @@ import Tabs from "../components/Tabs.jsx";
 import Tab from "../components/Tab.jsx";
 
 export default function VieWRecipe() {
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 500); // pull this out into a custom hook
     const [checkList, setCheckList] = useState([]);
     const [recipe, setRecipe] = useState();
     const { loggedUser } = useAuthContext();

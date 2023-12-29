@@ -2,6 +2,7 @@ import { RecipeForm, ExtractionForm } from "../components";
 import { useState } from 'react';
 import { addRecipe } from "../utils/apiServices.js";
 import { useNavigate } from "react-router-dom";
+import RecipeFormV2 from "../components/RecipeFormV2.jsx";
 
 export default function AddRecipe() {
     const [selected, setSelected] = useState(null);
@@ -16,7 +17,7 @@ export default function AddRecipe() {
                     <button onClick={() => setSelected("extract")}>Extract</button>
                 </div>
             </> : <>
-                {selected == "manual" ? <RecipeForm service={addRecipe} onSuccess={id => navigate(`/recipes/${id}`)}/> : <ExtractionForm />}
+                {selected == "manual" ? <RecipeFormV2 service={addRecipe} onSuccess={id => navigate(`/recipes/${id}`)}/> : <ExtractionForm />}
             </>}
         </>
     )

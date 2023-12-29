@@ -20,7 +20,7 @@ export default function Dashboard() {
         <>
             <h2>Recently Added Recipes</h2>
             <ul className='recipe-list'>
-                {recipes?.map(recipe =>
+                {recipes && recipes?.map(recipe =>
                     <li className="recipe" key={recipe.id}>
                         <img src={recipe.image} alt={recipe.title} />
                         <div>

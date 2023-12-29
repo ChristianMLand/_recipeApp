@@ -4,14 +4,18 @@
   box-sizing: border-box;
   /* outline: 1px solid red; */
 }
+body {
+  width: 100vw;
+}
+
 #root {
   min-height: 100vh;
+  height: 100%;
   /* max-width: 1280px; */
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
-
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -394,19 +398,21 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  align-items: center;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.03)
+  padding: 2rem;
+  max-width: 100vw;
+  background: #21222B;
+  min-height: 100vh;
+  text-align: left;
 }
 
-#recipe-form > div {
+/* #recipe-form {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   align-items: flex-start;
   justify-content: space-between;
-}
+} */
 
 #recipe-form > div > div, #recipe-form > div > ol {
   flex: 1;
@@ -422,22 +428,16 @@ main {
   gap: 0.5rem;
 }
 
-#recipe-form textarea, #recipe-form input, #recipe-form label {
+#recipe-form textarea {
   flex: 1;
-  min-width: 50px;
   width: 100%;
 }
 
-#recipe-form label {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.5rem;
+#recipe-form textarea, #recipe-form input { 
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
 }
-
-/* #recipe-form input[name=title] { 
-  border: none;
-  background: transparent
-} */
 
 
 #root {
@@ -445,6 +445,7 @@ main {
   flex-direction: column;
   gap: 0.5rem;
   width: 100vw;
+  height: 100%;
 }
 
 nav {
@@ -551,14 +552,91 @@ nav {
   background-color: #CFD8DC;
 }
 
-.ingredients-textarea, .instructions-textarea {
-  /* padding: 0.5rem; */
-  resize: none;
-  /* line-height: 1.5rem; */
-  white-space: pre;
+textarea {
+  resize: none
 }
 
+.ingredients-textarea, .instructions-textarea {
+  padding: 0.5rem;
+  line-height: 1.5rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
 
+/* #recipe-form input[name=title] {
+  font-size: 28px;
+  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.2em;
+  border-radius: 2px;
+  background: transparent;
+} */
+
+#recipe-form input[type=file] {
+  display: none;
+}
+
+/* #recipe-form img {
+  height: 200px;
+  border-radius: 10px;
+}
+
+#recipe-form img:before {
+  content: "hello world";
+  height: 500px;
+  width: 500px;
+  background: blue;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#recipe-form img:hover:before {
+  content: "hello world";
+  height: 500px;
+  width: 500px;
+  background: blue;
+  display: block;
+  border: 2px solid red;
+}  */
+
+.img__img {
+  flex: 1;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.img__wrap {
+  position: relative;
+}
+
+.img__description_layer {
+  position: absolute;
+  border-radius: 10px;
+  top: 0;
+  bottom: 5px; /* not sure why this is needed */
+  left: 0;
+  right: 0;
+  /* inset: 0; */
+  background: rgba(93, 98, 237, 0.6);
+  color: #fff;
+  font-weight: bolder;
+  font-size: 22px;
+  visibility: hidden;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: opacity .2s, visibility .2s;
+}
+
+.img__wrap:hover .img__description_layer,
+.img__wrap:active .img__description_layer {
+  visibility: visible;
+  opacity: 1;
+}
 
 @media screen and (max-width: 500px) {
   .hamburger-menu {
