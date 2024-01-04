@@ -1,5 +1,5 @@
 import { registerUser, loginUser } from "../utils/apiServices.js";
-import AuthForm from "../components/AuthForm.jsx";
+import { AuthForm } from "../components";
 
 export default function LogReg() {
     // TODO make this prettier

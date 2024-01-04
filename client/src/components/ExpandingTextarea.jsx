@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import style from './expandingTextarea.module.css';
+import style from './recipeForm.module.css';
 
 export default function ExpandingTextarea({ value:contents , onChange, name }) {
     const hiddenDiv = useRef(null);
@@ -24,7 +24,7 @@ export default function ExpandingTextarea({ value:contents , onChange, name }) {
     return (
         <>
             <textarea 
-                className={style.textarea}
+                id={name}
                 ref={textarea}
                 rows={1}
                 name={name} 

@@ -29,7 +29,7 @@ export default function Tabs({ children:tabs }) {
     }, [scrollPositions]);
 
     return (
-        <main className={style.tabsContainer}>
+        <div className={style.tabsContainer}>
             <ul className={style.tabList}>
             { tabs.map((tab, i) =>
                 <li key={i}>
@@ -38,6 +38,6 @@ export default function Tabs({ children:tabs }) {
             )}
             </ul>
             { cloneElement(tabs[active], { handlers }) }
-        </main>
+        </div>
     )
 }

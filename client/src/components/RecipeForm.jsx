@@ -1,9 +1,6 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import style from './recipeForm.module.css';
 
-
-// TODO use sessionStorage (works like localStorage) to keep track of form progress (clear after submitting)
 // TODO add preview image button so that it doesnt constantly try to update the image on keypress
 // TODO add file image upload instead of just url
 // TODO better input for time so you can do hours + minutes instead of just min

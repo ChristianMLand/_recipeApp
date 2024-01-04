@@ -31,6 +31,30 @@
     align-self: center;
 }
 
+.form textarea, 
+.hidden {
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    line-height: 1.4rem;
+    resize: none;
+    border-radius: 5px;
+    padding: 0.5rem;
+    padding-bottom: 0;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    font-family: Arial, sans-serif;
+}
+
+.hidden {
+    display: none;
+    visibility: hidden;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.hidden br {
+    line-height: 3px;
+}
+
 @media screen and (max-width: 500px) {
     .form {
         box-sizing: border-box;

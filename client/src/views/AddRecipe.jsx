@@ -1,15 +1,16 @@
-import { RecipeForm, ExtractionForm } from "../components";
+import { ExtractionForm, RecipeForm } from "../components";
 import { useState } from 'react';
 import { addRecipe } from "../utils/apiServices.js";
 import { useNavigate } from "react-router-dom";
-import RecipeFormV2 from "../components/RecipeFormV2.jsx";
 
+// TODO redesign page
+// TODO refactor logic for handling choice between type of form to be more concise
 export default function AddRecipe() {
     const [selected, setSelected] = useState(null);
     const navigate = useNavigate();
 
     return (
-        <>
+        <main>
             { !selected ? <>
                 <h2>Would you like to manually enter a recipe, or extract one from a webpage?</h2>
                 <div className="row">
@@ -17,8 +18,15 @@ export default function AddRecipe() {
                     <button onClick={() => setSelected("extract")}>Extract</button>
                 </div>
             </> : <>
-                {selected == "manual" ? <RecipeFormV2 service={addRecipe} onSuccess={id => navigate(`/recipes/${id}`)}/> : <ExtractionForm />}
+                { selected == "manual" ? 
+                    <RecipeForm 
+                        service={addRecipe} 
+                        onSuccess={id => navigate(`/recipes/${id}`)}
+                    /> 
+                    : 
+                    <ExtractionForm />
+                }
             </>}
-        </>
+        </main>
     )
 }

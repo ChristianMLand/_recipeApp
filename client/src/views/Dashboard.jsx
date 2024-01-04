@@ -17,7 +17,7 @@ export default function Dashboard() {
     // if (!loggedUser) return <h1>404</h1>;
 
     return (
-        <>
+        <main>
             <h2>Recently Added Recipes</h2>
             <ul className='recipe-list'>
                 {recipes && recipes?.map(recipe =>
@@ -36,6 +36,6 @@ export default function Dashboard() {
                     </li>
                 )}
             </ul>
-        </>
+        </main>
     )
 }

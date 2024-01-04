@@ -2,10 +2,9 @@ import { useParams, Link, useNavigate } from "react-router-dom"
 import { useState, useEffect, useRef } from 'react';
 import { getRecipe, deleteRecipe } from "../utils/apiServices.js";
 import { useAuthContext } from "../utils/AuthContext.jsx";
-import Fraction from 'fraction.js';
-import Tabs from "../components/Tabs.jsx";
-import Tab from "../components/Tab.jsx";
 import useIsMobile from '../utils/useIsMobile.js';
+import { Tabs, Tab } from "../components";
+import Fraction from 'fraction.js';
 
 export default function VieWRecipe() {
     const isMobile = useIsMobile();
@@ -53,11 +52,17 @@ export default function VieWRecipe() {
             return { ...currentRecipe, ingredients: fractionized, servings: servings + (origServings * amount)}
         })
     }
+
+    const handleDelete = id => {
+        if (window.confirm('Are you sure you want to delete this recipe?')) {
+            deleteRecipe(id).then(() => navigate("/recipes"));
+        }
+    }
     
     if (!recipe) return <h1>Loading...</h1>
 
     return (
-        <div className="recipe-view">
+        <main className="recipe-view">
             <div className="recipe-view-top">
                 <img src={recipe.image} alt={recipe.title} />
                 <div className="recipe-view-top-mid">
@@ -77,7 +82,7 @@ export default function VieWRecipe() {
                     { recipe.user_id == loggedUser?.id ? 
                         <>
                             <Link to={`/recipes/${id}/edit`}>Edit</Link>
-                            <button onClick={() => deleteRecipe(id).then(() => navigate("/recipes"))}>Delete</button>
+                            <button onClick={() => handleDelete(id)}>Delete</button>
                         </>
                         :
                         <button onClick={() => navigate("/")}>Save</button> 
@@ -137,6 +142,6 @@ export default function VieWRecipe() {
                     </>
                 }
             </div>
-        </div>
+        </main>
     )
 }

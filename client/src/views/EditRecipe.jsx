@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
-import { RecipeForm } from '../components';
 import { updateRecipe, getRecipe } from '../utils/apiServices.js';
-import { useParams, useNavigate } from 'react-router-dom';
-import RecipeFormV2 from '../components/RecipeFormV2.jsx';
 import useIsMobile from '../utils/useIsMobile.js';
+import { useParams, useNavigate } from 'react-router-dom';
+import { RecipeForm } from '../components';
 
 
 export default function EditRecipe() {
@@ -25,12 +24,12 @@ export default function EditRecipe() {
     if (!recipe) return <h1>Loading...</h1>
 
     return (
-        <div>
-            <RecipeFormV2
+        <main>
+            <RecipeForm
                 initialRecipe={recipe}
                 service={data => updateRecipe(id, data)}
                 onSuccess={() => navigate(`/recipes/${id}`)}
             />
-        </div>
+        </main>
     )
 }

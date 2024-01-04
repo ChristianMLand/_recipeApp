@@ -11,7 +11,7 @@ export default function AllCategories() {
     }, [])
 
     return (
-        <div>
+        <main>
             <h2>Add a Category</h2>
             { loggedUser && <CategoryForm /> }
             <ul>
@@ -22,6 +22,6 @@ export default function AllCategories() {
                     </li>
                 )}
             </ul>
-        </div>
+        </main>
     )
 }

@@ -1,5 +1,5 @@
 export default function FindRecipe() {
     return (
-        <div></div>
+        <main>Find Recipe</main>
     )
 }

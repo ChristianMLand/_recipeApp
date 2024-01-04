@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "../utils/AuthContext.jsx";
 
 const AuthForm = props => {
     const { name, service, fields } = props;
     const initialValues = Object.keys(fields).reduce((prev, field) => ({ ...prev, [field]: "" }), {});
     const [formData, setFormData] = useState(initialValues);
     const [formErrors, setFormErrors] = useState({});
-    const { refreshLoggedUser } = useAuthContext();
     const navigate = useNavigate();
 
     const handleSubmit = async e => {
@@ -17,7 +15,8 @@ const AuthForm = props => {
     }
 
     const handleChange = e => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
     }
 
     return (
