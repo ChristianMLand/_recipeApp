@@ -5,9 +5,10 @@ import { useAuthContext } from "../utils/AuthContext.jsx";
 import Fraction from 'fraction.js';
 import Tabs from "../components/Tabs.jsx";
 import Tab from "../components/Tab.jsx";
+import useIsMobile from '../utils/useIsMobile.js';
 
 export default function VieWRecipe() {
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 500); // pull this out into a custom hook
+    const isMobile = useIsMobile();
     const [checkList, setCheckList] = useState([]);
     const [recipe, setRecipe] = useState();
     const { loggedUser } = useAuthContext();
@@ -15,20 +16,12 @@ export default function VieWRecipe() {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const handleResize = () => {
-        setIsMobile(window.innerWidth <= 500);
-    }
-
     useEffect(() => {
-        window.addEventListener("resize", handleResize);
         getRecipe(id).then(({ data }) => {
             setRecipe(data);
             initialRecipe.current = Object.freeze(data);
             setCheckList(data.ingredients.map(() => false));
         });
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        }
     }, [id]);
 
     const handleCheck = (i, e) => {
@@ -96,7 +89,7 @@ export default function VieWRecipe() {
                     <Tabs>
                         <Tab title="Ingredients">
                             <ul className="recipe-view-ingredients">
-                                {recipe.ingredients.map((ingredient, i) => 
+                                {recipe?.ingredients?.map((ingredient, i) => 
                                     <li className="ingredient-item" key={i}>
                                         <input checked={checkList[i]} onChange={e => handleCheck(i, e)} type="checkbox" id={`ingredient-${i}`} />
                                         <label htmlFor={`ingredient-${i}`}>
@@ -110,7 +103,7 @@ export default function VieWRecipe() {
                         </Tab>
                         <Tab title="Instructions">
                             <ol className="recipe-view-instructions">
-                                {recipe.instructions.map((instruction, i) => 
+                                {recipe?.instructions?.map((instruction, i) => 
                                     <li key={i}>{instruction}</li>
                                 )}
                             </ol>
@@ -121,7 +114,7 @@ export default function VieWRecipe() {
                         <div className="recipe-view-ingredients">
                             <h2>Ingredients</h2>
                             <ul>
-                                {recipe.ingredients.map((ingredient, i) => 
+                                {recipe?.ingredients?.map((ingredient, i) => 
                                     <li className="ingredient-item" key={i}>
                                         <input type="checkbox" id={`ingredient-${i}`} />
                                         <label htmlFor={`ingredient-${i}`}>
@@ -136,7 +129,7 @@ export default function VieWRecipe() {
                         <div className="recipe-view-instructions">
                             <h2>Instructions</h2>
                             <ol>
-                                {recipe.instructions.map((instruction, i) => 
+                                {recipe?.instructions?.map((instruction, i) => 
                                     <li key={i}>{instruction}</li>
                                 )}
                             </ol>

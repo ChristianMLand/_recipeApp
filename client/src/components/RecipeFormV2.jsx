@@ -2,13 +2,19 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Tab from '../components/Tab.jsx';
 import Tabs from '../components/Tabs.jsx';
+import style from './recipeForm.module.css';
+import ExpandingTextarea from './ExpandingTextarea.jsx';
+import useIsMobile from '../utils/useIsMobile.js';
 
 // use tabs to handle multi-part form?
 // TODO use sessionStorage (works like localStorage) to keep track of form progress (clear after submitting)
 // TODO add preview image button so that it doesnt constantly try to update the image on keypress
 // TODO add file image upload instead of just url
 
+// TODO rework resizable textarea logic, and pull out into component
+
 export default function RecipeForm({ initialRecipe, service, onSuccess }) {
+    const isMobile = useIsMobile();
     
     const [recipe, setRecipe] = useState(() => {
         if (initialRecipe) {
@@ -73,20 +79,14 @@ export default function RecipeForm({ initialRecipe, service, onSuccess }) {
         if (data && !error) onSuccess(data.id);
     }
 
-    const resizeTextArea = e => {
-        const { name, value } = e.target;
-        setRecipe(currentRecipe => {
-            return { ...currentRecipe, [name]: value }
-        });
-    }
-
     return (
-        <form id="recipe-form" onSubmit={handleSubmit}>
+        <form className={style.form} onSubmit={handleSubmit}>
             { 
                 imageUploadType == "url" ? 
                 <>
-                    <img className="img__img" src={recipe.image || "http://placehold.it/257x200.jpg"} />
-                    <input placeholder="Image" type="url" value={recipe.image} onChange={updateValue} name="image" />
+                    <img src={recipe.image || "http://placehold.it/257x200.jpg"} />
+                    <label htmlFor='image'>Image URL: </label>
+                    <input placeholder="Image" id="image" type="url" value={recipe.image} onChange={updateValue} name="image" />
                 </>
                 :
                 <>
@@ -98,31 +98,45 @@ export default function RecipeForm({ initialRecipe, service, onSuccess }) {
                     <input ref={fileInputRef} type="file" accept="image/*" onChange={handleSelectFile} />
                 </>
             }
-            <input placeholder='Title' type="text" value={recipe.title} onChange={updateValue} name="title" />
+            <label htmlFor='title'>Title: </label>
+            <input placeholder='Title' id='title' type="text" value={recipe.title} onChange={updateValue} name="title" />
             <label htmlFor='time'>Time in Minutes: </label>
             <input placeholder="Time in minutes" id="time" min={1} max={1440} type="number" value={recipe.time} onChange={updateValue} name="time" />
             <label htmlFor='servings'>Servings: </label>
             <input placeholder="Servings" id="servings" type="number" min={1} value={recipe.servings} onChange={updateValue} name="servings" />
-            <Tabs>
-                <Tab title="Ingredients">
-                    <textarea 
-                        name="ingredients" 
-                        rows={recipe.ingredients.split("\n").reduce((count, val) => count + Math.floor(val.length / 40) + 1, 0)}
-                        value={recipe.ingredients} 
-                        className="ingredients-textarea" 
-                        onInput={resizeTextArea} 
-                    ></textarea>
-                </Tab>
-                <Tab title="Instructions">
-                    <textarea 
-                        name="instructions" 
-                        rows={recipe.instructions.split("\n").reduce((count, val) => count + Math.floor(val.length / 40) + 1, 0)}
-                        value={recipe.instructions} 
-                        className="instructions-textarea" 
-                        onInput={resizeTextArea} 
-                    ></textarea>
-                </Tab>
-            </Tabs>
+            { isMobile ? 
+                <Tabs>
+                    <Tab title="Ingredients">
+                        <ExpandingTextarea
+                            name="ingredients"
+                            value={recipe.ingredients}
+                            onChange={updateValue}
+                        />
+                    </Tab>
+                    <Tab title="Instructions">
+                        <ExpandingTextarea
+                            name="instructions"
+                            value={recipe.instructions}
+                            onChange={updateValue}
+                        />
+                    </Tab>
+                </Tabs>
+                :
+                <>
+                    <label htmlFor="ingredients">Ingredients: </label>
+                    <ExpandingTextarea
+                        name="ingredients"
+                        value={recipe.ingredients}
+                        onChange={updateValue}
+                    />
+                    <label htmlFor="instructions">Instructions: </label>
+                    <ExpandingTextarea
+                        name="instructions"
+                        value={recipe.instructions}
+                        onChange={updateValue}
+                    />
+                </>
+            }
             <button type="submit">Save</button>
         </form>
     );

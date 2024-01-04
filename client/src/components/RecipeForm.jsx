@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import style from './recipeForm.module.css';
 
 
 // TODO use sessionStorage (works like localStorage) to keep track of form progress (clear after submitting)
 // TODO add preview image button so that it doesnt constantly try to update the image on keypress
 // TODO add file image upload instead of just url
+// TODO better input for time so you can do hours + minutes instead of just min
 
 export default function RecipeForm({ initialRecipe, service, onSuccess }) {
     
@@ -55,17 +57,19 @@ export default function RecipeForm({ initialRecipe, service, onSuccess }) {
     }
 
     return (
-        <form id="recipe-form" onSubmit={handleSubmit}>
+        <form className={style.form} onSubmit={handleSubmit}>
             {/* <img src={recipe.image} alt="" /> */}
             <input placeholder="Image URL" type="url" value={recipe.image} onChange={updateValue} name="image" />
             <input placeholder='Title' type="text" value={recipe.title} onChange={updateValue} name="title" />
-            <div>
-                <label>
-                    Servings: <input placeholder="Servings" type="number" value={recipe.servings} onChange={updateValue} name="servings" />
-                </label>
-                <label>
-                    Time in Minutes: <input placeholder="Time in minutes" type="number" value={recipe.time} onChange={updateValue} name="time" />
-                </label>
+            <div className={style.inputGroup}>
+                <div>
+                    <label>Servings: </label>
+                    <input placeholder="Servings" type="number" value={recipe.servings} onChange={updateValue} name="servings" />
+                </div>
+                <div>
+                    <label>Time in Minutes: </label>
+                    <input placeholder="Time in minutes" type="number" value={recipe.time} onChange={updateValue} name="time" />
+                </div>
             </div>
             <div className="recipe-form-columns">
                 <div>

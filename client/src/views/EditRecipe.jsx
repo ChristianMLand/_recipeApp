@@ -3,12 +3,14 @@ import { RecipeForm } from '../components';
 import { updateRecipe, getRecipe } from '../utils/apiServices.js';
 import { useParams, useNavigate } from 'react-router-dom';
 import RecipeFormV2 from '../components/RecipeFormV2.jsx';
+import useIsMobile from '../utils/useIsMobile.js';
 
 
 export default function EditRecipe() {
     const [recipe, setRecipe] = useState()
     const { id } = useParams();
     const navigate = useNavigate();
+    const isMobile = useIsMobile();
 
     const fetchRecipe = async () => {
         const { data, error } = await getRecipe(id);
