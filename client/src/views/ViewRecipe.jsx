@@ -1,9 +1,8 @@
 import { useParams, Link, useNavigate } from "react-router-dom"
 import { useState, useEffect, useRef } from 'react';
-import { getRecipe, deleteRecipe } from "../utils/apiServices.js";
-import { useAuthContext } from "../utils/AuthContext.jsx";
-import useIsMobile from '../utils/useIsMobile.js';
-import { Tabs, Tab } from "../components";
+import { getRecipe, deleteRecipe } from "~/services";
+import { useAuthContext, useIsMobile } from "~/hooks";
+import { Tabs, Tab } from "~/components";
 import Fraction from 'fraction.js';
 
 export default function VieWRecipe() {

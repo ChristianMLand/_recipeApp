@@ -1,8 +1,16 @@
 import './App.css';
-import { AuthContext } from './utils/AuthContext.jsx';
 import { Routes, Route } from 'react-router-dom';
-import { LogReg, Dashboard, ViewRecipe, AddRecipe, EditRecipe, FindRecipe, Error, AllCategories } from './views';
-import Layout from './utils/Layout.jsx';
+import { 
+  LogReg, 
+  Dashboard, 
+  ViewRecipe, 
+  AddRecipe, 
+  EditRecipe, 
+  FindRecipe, 
+  Error, 
+  AllCategories 
+} from '~/views';
+import { Layout, AuthContext } from '~/components';
 
 function App() {
   return (

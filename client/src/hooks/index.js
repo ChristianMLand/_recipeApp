@@ -1,6 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { AppContext } from '~/components';
 
-export default function useIsMobile() {
+export const useAuthContext = () => useContext(AppContext);
+
+export const useIsMobile = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);
 
     const handleResize = () => {
@@ -15,4 +18,4 @@ export default function useIsMobile() {
     }, []);
 
     return isMobile;
-}   
+}

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { Tab, Tabs, ExpandingTextarea } from '../components';
+import { Tab, Tabs, ExpandingTextarea } from '~/components';
 import style from './recipeForm.module.css';
-import useIsMobile from '../utils/useIsMobile.js';
+import { useIsMobile } from '~/hooks';
 
 // TODO use sessionStorage (works like localStorage) to keep track of form progress (clear after submitting)
 // TODO add preview image button so that it doesnt constantly try to update the image on keypress

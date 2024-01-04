@@ -1,7 +1,7 @@
 import { Outlet, Link, useNavigate } from 'react-router-dom';
 import { useEffect } from "react";
-import { useAuthContext } from "./AuthContext.jsx";
-import { logoutUser, getLoggedUser } from './apiServices.js';
+import { useAuthContext } from "~/hooks";
+import { logoutUser, getLoggedUser } from '~/services';
 
 export default function Layout() {
     const { loggedUser, setLoggedUser } = useAuthContext();

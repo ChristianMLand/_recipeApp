@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { updateRecipe, getRecipe } from '../utils/apiServices.js';
-import useIsMobile from '../utils/useIsMobile.js';
+import { updateRecipe, getRecipe } from '~/services';
+import { useIsMobile } from '~/hooks';
 import { useParams, useNavigate } from 'react-router-dom';
-import { RecipeForm } from '../components';
+import { RecipeForm } from '~/components';
 
 
 export default function EditRecipe() {

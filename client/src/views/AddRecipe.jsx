@@ -1,6 +1,6 @@
-import { ExtractionForm, RecipeForm } from "../components";
+import { ExtractionForm, RecipeForm } from "~/components";
 import { useState } from 'react';
-import { addRecipe } from "../utils/apiServices.js";
+import { addRecipe } from "~/services";
 import { useNavigate } from "react-router-dom";
 
 // TODO redesign page

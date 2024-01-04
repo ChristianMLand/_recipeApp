@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getRecipes } from '../utils/apiServices.js';
-import { useAuthContext } from '../utils/AuthContext.jsx';
+import { getRecipes } from '~/services';
+// import { useAuthContext } from '../utils/AuthContext.jsx';
 
 export default function Dashboard() {
     const [recipes, setRecipes] = useState([]);

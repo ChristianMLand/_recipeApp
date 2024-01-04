@@ -1,6 +1,6 @@
-import { CategoryForm } from "../components";
+import { CategoryForm } from "~/components";
 import { useState, useEffect } from 'react';
-import { useAuthContext } from "../utils/AuthContext.jsx";
+import { useAuthContext } from "~/hooks";
 
 export default function AllCategories() {
     const [categories, setCategories] = useState([]);

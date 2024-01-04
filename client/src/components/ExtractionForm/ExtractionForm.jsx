@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { extractRecipe } from '../utils/apiServices.js';
+import { extractRecipe } from '~/services';
 import { useNavigate } from 'react-router-dom';
 
 export default function ExtractionForm() {
