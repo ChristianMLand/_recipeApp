@@ -1,9 +1,15 @@
 import { CategoryForm } from "~/components";
 import { useState, useEffect } from 'react';
 import { useAuthContext } from "~/hooks";
+import style from './categories.module.css';
 
 export default function AllCategories() {
-    const [categories, setCategories] = useState([]);
+    const [categories, setCategories] = useState([
+        { id: 1, name: "Breakfast", count: 3 },
+        { id: 2, name: "Lunch", count: 7 },
+        { id: 3, name: "Dinner", count: 10 },
+        { id: 4, name: "Dessert", count: 2 },
+    ]);
     const { loggedUser } = useAuthContext();
 
     useEffect(() => {
@@ -14,11 +20,11 @@ export default function AllCategories() {
         <main>
             <h2>Add a Category</h2>
             { loggedUser && <CategoryForm /> }
-            <ul>
+            <ul className={style.list}>
                 { categories?.map(category => 
-                    <li key={category.id}>
+                    <li className={style.category} key={category.id}>
                         <h3>{category.name}</h3>
-                        <span>count of recipes in category</span>
+                        <span>{category.count} recipes</span>
                     </li>
                 )}
             </ul>

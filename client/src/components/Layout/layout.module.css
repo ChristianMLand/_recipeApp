@@ -1,0 +1,149 @@
+.container {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    padding: 0 1rem;
+}
+
+.container,
+.container ul {
+    display: flex;
+}
+
+.container ul {
+    gap: 0.5rem;
+}
+
+.container > ul {
+    height: fit-content;
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+    /* padding: 1rem; */
+}
+
+.container > ul > li {
+    padding: 1rem;
+    white-space: nowrap;
+}
+
+.container > ul > li:last-child {
+    margin-left: auto;
+}
+
+.hamburgerMenu {
+    display: none;
+}
+
+/* HAMBURGER MENU!!! */
+.hamburgerMenu input {
+    opacity: 0;
+}
+
+.hamburgerMenu input:checked+label>span {
+    transform: rotate(45deg);
+}
+
+.hamburgerMenu input:checked+label>span::before {
+    top: 0;
+    transform: rotate(0deg);
+}
+
+.hamburgerMenu input:checked+label>span::after {
+    top: 0;
+    transform: rotate(90deg);
+}
+
+.hamburgerMenu input:checked~ul {
+    left: 0 !important;
+}
+
+.container label {
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1;
+}
+
+.container label>span,
+.container label>span::before,
+.container label>span::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    background-color: var(--text-light);
+    transition-duration: .25s;
+}
+
+.container label>span::before {
+    content: '';
+    top: -8px;
+}
+
+.container label>span::after {
+    content: '';
+    top: 8px;
+}
+
+.hamburgerMenu > ul {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 300px;
+    height: 100%;
+    margin: 0;
+    padding: 80px 0;
+    list-style: none;
+    background-color: var(--blue-1);
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+    transition-duration: .25s;
+}
+
+.hamburgerMenu > ul > li {
+    display: block;
+    padding: 12px 24px;
+    color: var(--text-light);
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    transition-duration: .25s;
+}
+
+.hamburgerMenu > ul > li:hover {
+    background-color: #CFD8DC;
+}
+
+@media screen and (max-width: 500px) {
+    .hamburgerMenu {
+        display: block;
+        position: absolute;
+    }
+
+    .container {
+        background: #21222B;
+        border-radius: 0;
+        padding: 1.5rem;
+        position: fixed;
+        width: 100%;
+        top: 0px;
+        left: 0px;
+        z-index: 2;
+    }
+
+    .container > ul {
+        display: none;
+        width: 100%;
+        text-align: center;
+    }
+
+    .container > ul > li {
+        flex: 1;
+    }
+}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import style from './authForm.module.css';
 
 const AuthForm = props => {
     const { name, service, fields } = props;
@@ -20,7 +21,7 @@ const AuthForm = props => {
     }
 
     return (
-        <form className="auth-form" onSubmit={handleSubmit}>
+        <form className={style.form} onSubmit={handleSubmit}>
             <fieldset>
                 <legend>{name}</legend>
                 { Object.entries(fields).map(([name, type], i) => 

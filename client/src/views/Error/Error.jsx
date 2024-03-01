@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
+import style from './error.module.css';
 
 export default function Error() {
     return(
-        <main id="error-container">
+        <main className={style.errorContainer}>
             <h1>404</h1>
             <p>Did you get lost? <Link to="/">Go Back</Link></p>
         </main>

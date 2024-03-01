@@ -55,7 +55,17 @@
     line-height: 3px;
 }
 
+.buttonGroup {
+    display: flex;
+    gap: 0.5rem;
+    padding-top: 1rem;
+    justify-content: center;
+}
+
 @media screen and (max-width: 500px) {
+    .buttonGroup button {
+        flex: 1;
+    }
     .form {
         box-sizing: border-box;
         width: 100%;

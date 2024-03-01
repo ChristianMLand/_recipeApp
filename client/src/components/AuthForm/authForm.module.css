@@ -1,0 +1,42 @@
+.form {
+    min-width: 40ch;
+}
+
+.form fieldset {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: center;
+}
+
+.form fieldset>div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    width: 100%;
+}
+
+.form legend {
+    color: var(--text-light);
+    font-weight: bold;
+    padding: 0.25rem;
+}
+
+.form input {
+    background: #27282f;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 3px;
+    color: var(--text-light);
+}
+
+.form button {
+    background: var(--blue-1);
+    padding: 0.25rem 1rem;
+    border: none;
+    color: var(--text-light);
+    border-radius: 3px;
+}

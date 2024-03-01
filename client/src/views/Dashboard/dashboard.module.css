@@ -1,0 +1,37 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+}
+
+.recipe {
+    background: rgba(255, 255, 255, 0.05);
+    /* padding: 2rem; */
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    /* box-shadow: 5px 5px 5px 0px black; */
+}
+
+.recipe div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+    padding: 1rem;
+    /* min-width: 250px; */
+}
+
+.recipe img {
+    object-fit: cover;
+    width: 125px;
+    height: 150px;
+}
+
+.recipe a {
+    font-weight: bolder;
+    font-size: 18px;
+}

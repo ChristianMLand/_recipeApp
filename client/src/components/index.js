@@ -7,3 +7,5 @@ export { default as Tabs } from './Tabs/Tabs.jsx';
 export { default as Tab } from './Tabs/Tab.jsx';
 export { AuthContext, AppContext } from './AuthContext/AuthContext.jsx';
 export { default as Layout } from './Layout/Layout.jsx';
+export { default as Checkbox } from './IndeterminateCheckbox/IndeterminateCheckbox.jsx';
+export { default as FilterGroup } from './FilterGroup/FilterGroup.jsx';

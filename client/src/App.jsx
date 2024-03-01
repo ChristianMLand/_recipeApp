@@ -29,7 +29,6 @@ function App() {
       </Routes>
     </AuthContext>
   )
-  
 }
 
 export default App

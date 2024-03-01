@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Tab, Tabs, ExpandingTextarea } from '~/components';
 import style from './recipeForm.module.css';
 import { useIsMobile } from '~/hooks';
+import { useNavigate } from 'react-router-dom';
 
 // TODO use sessionStorage (works like localStorage) to keep track of form progress (clear after submitting)
 // TODO add preview image button so that it doesnt constantly try to update the image on keypress
@@ -26,6 +27,7 @@ export default function RecipeForm({ initialRecipe, service, onSuccess }) {
             return emptyRecipe;
         }
     }
+    const navigate = useNavigate();
     const isMobile = useIsMobile();
     const [recipe, setRecipe] = useState(initializeRecipeState);
 
@@ -173,7 +175,10 @@ export default function RecipeForm({ initialRecipe, service, onSuccess }) {
                     />
                 </>
             }
-            <button type="submit">Save</button>
+            <div className={style.buttonGroup}>
+                <button type="button" onClick={() => navigate(-1)}>Cancel</button>
+                <button type="submit">Save</button>
+            </div>
         </form>
     );
 }

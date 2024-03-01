@@ -1,0 +1,51 @@
+.container {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+    padding: 1rem;
+}
+
+.sideBar {
+    background: var(--dark-2);
+    border-radius: 10px;
+    padding: 2rem;
+    flex: 1;
+    text-align: left;
+}
+
+.sideBar summary {
+    font-size: 18px;
+}
+
+.sideBar li {
+    display: flex;
+    gap: 1rem;
+    /* justify-content: space-between; */
+}
+
+.form {
+    display: flex;
+    align-items: center;
+    flex: 3;
+    gap: 0.5rem;
+}
+
+.form button {
+    font-size: 14px;
+    padding: 0.5rem 1.5rem;
+}
+
+.form input {
+    flex: 1;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid var(--text-dark);
+}
+
+.checkbox:indeterminate {
+    accent-color: red;
+}
+
+.checkbox:checked {
+    accent-color: var(--blue-1);
+}

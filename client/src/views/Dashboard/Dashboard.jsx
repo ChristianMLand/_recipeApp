@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getRecipes } from '~/services';
-// import { useAuthContext } from '../utils/AuthContext.jsx';
+import style from './dashboard.module.css';
 
 export default function Dashboard() {
     const [recipes, setRecipes] = useState([]);
-    // const { loggedUser } = useAuthContext();
-    // const navigate = useNavigate();
 
     useEffect(() => {
         getRecipes().then(({ data }) => {
@@ -14,14 +12,12 @@ export default function Dashboard() {
         });
     }, []);
 
-    // if (!loggedUser) return <h1>404</h1>;
-
     return (
         <main>
             <h2>Recently Added Recipes</h2>
-            <ul className='recipe-list'>
+            <ul className={style.list}>
                 {recipes && recipes?.map(recipe =>
-                    <li className="recipe" key={recipe.id}>
+                    <li className={style.recipe} key={recipe.id}>
                         <img src={recipe.image} alt={recipe.title} />
                         <div>
                             <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
@@ -31,7 +27,6 @@ export default function Dashboard() {
                                 {recipe.time % 60 && ` ${recipe.time % 60} mins`}
                             </span>
                             <span>Yields: {recipe.servings}</span>
-
                         </div>
                     </li>
                 )}

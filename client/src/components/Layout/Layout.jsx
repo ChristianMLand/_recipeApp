@@ -2,6 +2,7 @@ import { Outlet, Link, useNavigate } from 'react-router-dom';
 import { useEffect } from "react";
 import { useAuthContext } from "~/hooks";
 import { logoutUser, getLoggedUser } from '~/services';
+import style from './layout.module.css';
 
 export default function Layout() {
     const { loggedUser, setLoggedUser } = useAuthContext();
@@ -18,22 +19,23 @@ export default function Layout() {
 
     return (
         <> 
-            <nav>
-                <div className="hamburger-menu">
-                    <input id="menu__toggle" type="checkbox" />
-                    <label className="menu__btn" htmlFor="menu__toggle">
+            <nav className={style.container}>
+                <div className={style.hamburgerMenu}>
+                    <input id="menu-toggle" type="checkbox" />
+                    <label htmlFor="menu-toggle">
                         <span></span>
                     </label>
-                    <ul className="menu__box">
+                    <ul>
                     { loggedUser ? 
                         <>
-                            <li><Link className="menu__item" to="/recipes">Home</Link></li>
-                            <li><Link className="menu__item" to="/recipes/add">Add Recipe</Link></li>
-                            <li><Link className="menu__item" to="/categories">View Categories</Link></li>
+                            <li><Link to="/recipes">Home</Link></li>
+                            <li><Link to="/recipes/add">Add Recipe</Link></li>
+                            <li><Link to="/categories">View Categories</Link></li>
+                            <li><Link to="/recipes/search">Search Recipes</Link></li>
                             <li><button onClick={() => logoutUser().then(() => navigate("/"))}>Logout</button></li> 
                         </> 
                         :
-                        <li><Link className="menu__item" to="/">Login</Link></li>
+                        <li><Link to="/">Login</Link></li>
                     }
                     </ul>
                 </div>
@@ -43,6 +45,7 @@ export default function Layout() {
                         <li><Link to="/recipes">Home</Link></li>
                         <li><Link to="/recipes/add">Add Recipe</Link></li>
                         <li><Link to="/categories">View Categories</Link></li>
+                        <li><Link to="/recipes/search">Search Recipes</Link></li>
                         <li><button onClick={() => logoutUser().then(() => navigate("/"))}>Logout</button></li> 
                     </> 
                     :
