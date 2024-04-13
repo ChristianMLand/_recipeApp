@@ -18,10 +18,11 @@ def get_logged_user():
 def register():
     logged_user = None
     if request.args.get("login"):
-        logged_user = User.retrieve_one(email=request.json["login_email"])
+        logged_user = User.retrieve_one(email=request.json["login_email"].lower())
         session["id"] = logged_user.id
     else:
-        session["id"] = User.create(**request.json)
+        user_data = {**request.json, "email": request.json["email"].lower()}
+        session["id"] = User.create(**user_data)
         logged_user = User.retrieve_one(id=session["id"])
     return jsonify(logged_user.as_json())
 
