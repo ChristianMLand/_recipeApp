@@ -38,7 +38,7 @@ export const logoutUser = serviceWrapper(
 );
 
 export const getRecipes = serviceWrapper(
-    async () => await http.get("/recipes")
+    async (config={}) => await http.get("/recipes", config)
 );
 
 export const getRecipe = serviceWrapper(

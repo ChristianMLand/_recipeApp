@@ -60,3 +60,23 @@ def update_recipe(id):
     data["ingredients"] = [standardize_units(ingredient) for ingredient in data["ingredients"]]
     Recipe.update(id=id, **data)
     return "success", 200
+
+
+# @app.patch("/api/recipes/<id>")
+# @enforce_login
+# def add_recipe_to_collections(id):
+
+#     pass
+
+# @app.post("/api/collections")
+# @enforce_login
+# def create_collection():
+#     pass
+
+# @app.patch("/api/collections/<id>")
+# @enforce_login
+# def update_collection(id):
+#     pass
+
+
+

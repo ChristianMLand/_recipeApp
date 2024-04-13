@@ -1,34 +1,42 @@
 .tabsContainer {
     display: flex;
     flex-direction: column;
-    /* gap: 0.5rem; */
+    gap: 0.5rem;
     width: 100%;
 }
 
 .tabList {
     list-style: none;
     display: flex;
-    gap: 0.5rem;
+    gap: 1rem;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: center; */
     position: sticky;
     z-index: 1;
-    top: 45px;
-    background: #21222B;
+    --top-offset: 0px;
+    top: var(--top-offset);
+    background: #0c0d12;
+    /* background: #21222B; */
+}
+
+.tabList > li {
+    flex: 1;
 }
 
 .tabList h2 {
+    text-align: center;
     padding-bottom: 1rem;
     color: var(--text-dark);
 }
 
 .tabCard {
-    padding: 1.5em;
+    /* padding: 1.5em; */
     /* box-shadow: 0px 2px 7px 0px  #1a1a1a; */
     border-radius: 0 0 8px 8px;
-    background: #2B2C34;
+    /* background: #2B2C34; */
     display: flex;
     flex-direction: column;
+    min-height: 350px;
 }
 
 .tabList h2.activeTab {

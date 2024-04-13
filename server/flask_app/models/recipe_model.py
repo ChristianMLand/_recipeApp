@@ -14,10 +14,10 @@ class Recipe(base_model.Model):
     user_id : int
     table = "recipes"
 
-    # @classmethod
-    # def create(cls, **data):
-    #     # handle creation
-    #     return super().create(**data)
+    # @property
+    # def collections(self) -> list[Collection]:
+    #     pass
+    #     return [entry.collection for entry in Entries.retrieve_all(recipe_id=self.id)]
     
     @staticmethod
     def validate(**data):

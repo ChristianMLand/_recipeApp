@@ -1,12 +1,11 @@
-import { useState } from 'react';
+import { useState, forwardRef } from 'react';
 import style from './recipeForm.module.css';
 
 // TODO add preview image button so that it doesnt constantly try to update the image on keypress
 // TODO add file image upload instead of just url
 // TODO better input for time so you can do hours + minutes instead of just min
 
-export default function RecipeForm({ initialRecipe, service, onSuccess }) {
-    
+export default forwardRef(function RecipeForm({ initialRecipe, service, onSuccess }, ref) {
     const [recipe, setRecipe] = useState(initialRecipe ?? {
         title: "",
         servings: "",
@@ -54,7 +53,7 @@ export default function RecipeForm({ initialRecipe, service, onSuccess }) {
     }
 
     return (
-        <form className={style.form} onSubmit={handleSubmit}>
+        <form ref={ref} className={style.form} onSubmit={handleSubmit}>
             {/* <img src={recipe.image} alt="" /> */}
             <input placeholder="Image URL" type="url" value={recipe.image} onChange={updateValue} name="image" />
             <input placeholder='Title' type="text" value={recipe.title} onChange={updateValue} name="title" />
@@ -93,4 +92,4 @@ export default function RecipeForm({ initialRecipe, service, onSuccess }) {
             <button type="submit">Save</button>
         </form>
     );
-}
+})

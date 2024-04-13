@@ -5,6 +5,62 @@
     padding: 1rem;
 }
 
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    flex: 3;
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.recipe {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 200px;
+    width: 200px;
+    color: var(--text-light);
+    display: flex;
+    align-items: flex-end;
+    border-radius: 5px;
+}
+
+.recipe span {
+    font-weight: bold;
+    padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 3px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter {
+    display: flex;
+    padding: 0.5rem;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.filter label {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.delBtn {
+    padding: 0.5rem 0.75rem;
+}
+
 .sideBar {
     background: var(--dark-2);
     border-radius: 10px;
@@ -26,7 +82,6 @@
 .form {
     display: flex;
     align-items: center;
-    flex: 3;
     gap: 0.5rem;
 }
 
@@ -48,4 +103,18 @@
 
 .checkbox:checked {
     accent-color: var(--blue-1);
+}
+
+@media screen and (max-width: 500px) {
+    .container {
+        flex-direction: column;
+    }
+    .recipe {
+        width: 150px;
+        height: 150px;
+    }
+    .section {
+        flex-direction: row;
+        align-items: center;
+    }
 }

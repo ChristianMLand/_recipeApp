@@ -1,8 +1,5 @@
 .form {
     min-width: 40ch;
-}
-
-.form fieldset {
     padding: 0.5rem;
     border: none;
     border-radius: 2px;
@@ -12,7 +9,7 @@
     align-items: center;
 }
 
-.form fieldset>div {
+.form>div {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
@@ -34,7 +31,8 @@
 }
 
 .form button {
-    background: var(--blue-1);
+    margin-top: 0.5rem;
+    background: var(--accent);
     padding: 0.25rem 1rem;
     border: none;
     color: var(--text-light);

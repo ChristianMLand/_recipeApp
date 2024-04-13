@@ -27,16 +27,10 @@ export const useDataFetcher = (service, dependencies = [], fallback = null) => {
 
     const fetchData = async signal => {
         setLoading(true);
-        try {
-            setData(await service(signal, ...dependencies));
-            setError(null);
-        } catch (err) {
-            setError(err.message);
-            setData(fallback);
-            console.error("Error: ", err.message);
-        } finally {
-            setLoading(false);
-        }
+        const { data, error } = await service(signal, ...dependencies);
+        setData(data);
+        setError(error);
+        setLoading(false);
     };
 
     useEffect(() => {

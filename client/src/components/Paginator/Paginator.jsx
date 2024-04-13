@@ -29,12 +29,6 @@ export default function Paginator(props) {
         Array.from({ length: pageArrLen }, (_, i) => i)
     );
 
-    const handleSubmit = e => {
-        e.preventDefault();
-        goToPage(pageInput.current.value - 1);
-        pageInput.current.value = "";
-    }
-
     useEffect(() => {
         const mid = Math.floor(pageArrLen / 2);
         if (pageArr[mid] === currentPage) return;
@@ -50,7 +44,6 @@ export default function Paginator(props) {
 
     return (
         <div className={style.container}>
-            <h2>Traditional Pages</h2>
             <form className={style.form}>
                 <label htmlFor="limit">Amount Per Page:</label>
                 <select
@@ -73,7 +66,7 @@ export default function Paginator(props) {
                     <button
                         onClick={() => goToPage(currentPage - 1)}
                         disabled={currentPage === 0}
-                    >Prev</button>
+                    ><i className="fa-solid fa-chevron-left"></i></button>
                 </li>
                 {pageArr.map(page =>
                     <li key={page}>
@@ -87,21 +80,9 @@ export default function Paginator(props) {
                     <button
                         onClick={() => goToPage(currentPage + 1)}
                         disabled={currentPage === totalPages - 1}
-                    >Next</button>
+                    ><i className="fa-solid fa-chevron-right"></i></button>
                 </li>
             </ul>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="pageInput">Go To Page: </label>
-                <input
-                    placeholder={`1 ... ${totalPages}`}
-                    ref={pageInput}
-                    type="number"
-                    min={1}
-                    max={totalPages}
-                    id="pageInput"
-                />
-                <button>go</button>
-            </form>
         </div>
     )
 }

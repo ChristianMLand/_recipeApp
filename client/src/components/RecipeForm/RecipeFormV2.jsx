@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, forwardRef } from 'react';
 import { Tab, Tabs, ExpandingTextarea } from '~/components';
 import style from './recipeForm.module.css';
 import { useIsMobile } from '~/hooks';
@@ -16,7 +16,7 @@ const emptyRecipe = {
     instructions: "",
 };
 
-export default function RecipeForm({ initialRecipe, service, onSuccess }) {
+export default forwardRef(function RecipeForm({ initialRecipe, service, onSuccess }, ref) {
     const initializeRecipeState = () => {
         if (initialRecipe) {
             const recipeCopy = structuredClone(initialRecipe);
@@ -77,18 +77,18 @@ export default function RecipeForm({ initialRecipe, service, onSuccess }) {
     }
 
     return (
-        <form className={style.form} onSubmit={handleSubmit}>
+        <form ref={ref} className={style.form} onSubmit={handleSubmit}>
             { 
                 imageUploadType == "url" ? 
                 <>
-                    <img src={recipe.image || "http://placehold.it/257x200.jpg"} />
+                    <img src={recipe.image}/>
                     <label htmlFor='image'>Image URL: </label>
                     <input 
                         placeholder="Image" 
                         id="image" 
                         type="url" 
-                        value={recipe.image} 
-                        onChange={updateValue} 
+                        defaultValue={recipe.image} 
+                        onBlur={updateValue} 
                         name="image" 
                     />
                 </>
@@ -143,7 +143,7 @@ export default function RecipeForm({ initialRecipe, service, onSuccess }) {
                 name="servings" 
             />
             { isMobile ? 
-                <Tabs>
+                <Tabs topOffset={50}>
                     <Tab title="Ingredients">
                         <ExpandingTextarea
                             name="ingredients"
@@ -175,10 +175,6 @@ export default function RecipeForm({ initialRecipe, service, onSuccess }) {
                     />
                 </>
             }
-            <div className={style.buttonGroup}>
-                <button type="button" onClick={() => navigate(-1)}>Cancel</button>
-                <button type="submit">Save</button>
-            </div>
         </form>
     );
-}
+});

@@ -9,3 +9,4 @@ export { AuthContext, AppContext } from './AuthContext/AuthContext.jsx';
 export { default as Layout } from './Layout/Layout.jsx';
 export { default as Checkbox } from './IndeterminateCheckbox/IndeterminateCheckbox.jsx';
 export { default as FilterGroup } from './FilterGroup/FilterGroup.jsx';
+export { default as MultiSelect } from './MultiSelect/MultiSelect.jsx';

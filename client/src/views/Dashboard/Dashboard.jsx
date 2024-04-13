@@ -14,7 +14,7 @@ export default function Dashboard() {
 
     return (
         <main>
-            <h2>Recently Added Recipes</h2>
+            <h2>All Recipes</h2>
             <ul className={style.list}>
                 {recipes && recipes?.map(recipe =>
                     <li className={style.recipe} key={recipe.id}>

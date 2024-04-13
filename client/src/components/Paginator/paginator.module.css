@@ -1,11 +1,11 @@
 .container {
     flex: 1;
-    height: 900px;
     gap: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    padding: 1rem;
 }
 
 .itemList {
@@ -18,13 +18,11 @@
     list-style: none;
     height: fit-content;
     margin-bottom: auto;
-    width: 800px;
 }
 
 .loading {
     height: fit-content;
     margin-bottom: auto;
-    width: 800px;
 }
 
 .pageNumberList {
@@ -32,6 +30,10 @@
     list-style: none;
     gap: 0.25rem;
     align-items: center;
+}
+
+.pageNumberList button {
+    background: transparent;
 }
 
 .active {

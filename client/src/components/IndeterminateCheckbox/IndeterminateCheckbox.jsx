@@ -21,8 +21,10 @@ export default function IndeterminateCheckbox({ name, onChange }) {
 
     return (
         <>
-            <input className={style.checkbox} type="checkbox" onClick={handleClick} name={name} id={name} />
-            <label htmlFor={name}>{name}</label>
+            <label htmlFor={name}>
+                <input className={style.checkbox} type="checkbox" onClick={handleClick} name={name} id={name} />
+                <span>{name}</span>
+            </label>
         </>
     )
 }
