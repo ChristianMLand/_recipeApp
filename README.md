@@ -1,7 +1,9 @@
 ## Recipe collection App
 -----------------------
 Author: Christian Land
+
 Live Site: https://recipe-app-5agb.onrender.com
+
 -----------------------
 TECHNOLOGY USED
 ----------------------
