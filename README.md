@@ -4,6 +4,8 @@ Author: Christian Land
 
 Live Site: https://recipe-app-5agb.onrender.com
 
+<img src="./recipe-phone-mockups.png" height="500" />
+
 -----------------------
 TECHNOLOGY USED
 ----------------------
