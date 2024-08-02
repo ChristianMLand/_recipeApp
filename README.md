@@ -1,13 +1,15 @@
 ## Recipe collection App
 -----------------------
 Author: Christian Land
+Live Site: https://recipe-app-5agb.onrender.com
 -----------------------
-TECHNOLOGY
+TECHNOLOGY USED
 ----------------------
-- https://github.com/hhursev/recipe-scrapers
-- JavaScript React front end
-- Python Flask back end
-- PostgreSQL db
+- Recipe-scraper pacakge from: https://github.com/hhursev/recipe-scrapers
+- JavaScript React Front-end
+- Python Flask Back-end
+- PostgreSQL CockRoachDB Database
+- Deployed with Render
 -----------------------
 FEATURES
 -----------------------
