@@ -9,7 +9,7 @@ Live Site: https://recipe-app-5agb.onrender.com
 -----------------------
 TECHNOLOGY USED
 ----------------------
-- Recipe-scraper pacakge from: https://github.com/hhursev/recipe-scrapers
+- Recipe-scraper package from: https://github.com/hhursev/recipe-scrapers
 - JavaScript React Front-end
 - Python Flask Back-end
 - PostgreSQL CockRoachDB Database
