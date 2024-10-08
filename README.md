@@ -2,7 +2,7 @@
 -----------------------
 Author: Christian Land
 
-Live Site: https://recipe-app-5agb.onrender.com
+[Live Site](https://www.recipes.christianland.dev/)
 
 <img src="./recipe-phone-mockups.png" height="500" />
 
