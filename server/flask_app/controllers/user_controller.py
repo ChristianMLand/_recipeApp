@@ -3,6 +3,10 @@ from flask import jsonify, request, session, render_template
 from flask_app.models.user_model import User
 from flask_app.controllers import validate_model, enforce_login
 
+@app.get("/ping")
+def ping():
+    return "pong", 200
+
 @app.errorhandler(404)
 def not_found(e):
     return render_template("index.html")
