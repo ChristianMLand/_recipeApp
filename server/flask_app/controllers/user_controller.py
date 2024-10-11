@@ -14,6 +14,7 @@ def not_found(e):
 @app.get("/api/auth")
 @enforce_login
 def get_logged_user():
+    session.modified = True
     logged_user = User.retrieve_one(id=session["id"])
     return jsonify(logged_user.as_json())
 
