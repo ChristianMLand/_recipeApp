@@ -13,6 +13,10 @@ app = Flask(
     template_folder='../../client/dist'
 )
 
-app.secret_key = os.getenv("SECRET_KEY")
+app.config.update(
+    SECRET_KEY=os.getenv("SECRET_KEY"),
+    SESSION_COOKIE_SECURE=True
+)
+
 bcrypt = Bcrypt(app)
 CORS(app, supports_credentials=True)
