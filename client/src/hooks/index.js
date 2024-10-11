@@ -1,7 +1,24 @@
 import { useState, useEffect, useContext } from 'react';
 import { AppContext } from '~/components';
+import axios from 'axios';
 
 export const useAuthContext = () => useContext(AppContext);
+
+const http = axios.create({
+    // baseURL: "http://localhost:8000/api", // switch to /api in prod
+    baseURL: "/api",
+    withCredentials: true
+});
+
+export const useREST = base => {
+    return {
+        "create": data => http.post(base, data),
+        "get": config => http.get(base, config),
+        "getOne": (id, config) => http.get(base + id, config),
+        "update": (id, data) => http.put(base + id, data),
+        "delete": (id = "") => http.delete(base + id)
+    };
+};
 
 export const useIsMobile = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 500);

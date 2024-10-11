@@ -71,7 +71,7 @@
     padding: 0.25rem;
 }
 
-.form button {
+.form button, .btn {
     background: transparent;
     font-size: 1.5em;
     padding: 0;

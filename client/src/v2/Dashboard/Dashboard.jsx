@@ -9,21 +9,13 @@ export default function Dashboard() {
     const navigate = useNavigate();
     const [error, setError] = useState("");
     const [recipes, setRecipes] = useState([]);
-    const { loggedUser, setLoggedUser } = useAuthContext();
-
-    const handleLogout = () => {
-        logoutUser().then(() => navigate("/"))
-    }
+    const { loggedUser, logout } = useAuthContext();
 
     useEffect(() => {
-        getLoggedUser().then(({ data, error }) => {
-            if (data && !error) setLoggedUser(data);
-            else navigate("/404");
-        });
-        getRecipes().then(({ data }) => {
+        loggedUser && getRecipes().then(({ data }) => {
             setRecipes(data)
         });
-    }, []);
+    }, [loggedUser]);
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -46,6 +38,7 @@ export default function Dashboard() {
                 <h2>Cookbook</h2>
                 <Link to="/recipes/search"><i className="fa-solid fa-magnifying-glass" /></Link>
                 <Link to="/recipes/add" className={styles.roundBtn}><i className="fa-solid fa-plus" /></Link>
+                <button className={styles.btn} onClick={logout}><i className="fa fa-sign-out" aria-hidden="true" /></button>
             </nav>
             <Tabs topOffset={0}>
                 <Tab title="All Recipes">
