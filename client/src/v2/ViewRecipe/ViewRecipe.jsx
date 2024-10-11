@@ -66,7 +66,10 @@ export default function VieWRecipe() {
     }
 
     if (!recipe) return <h1>Loading...</h1>
-
+    // TODO recipe sharing (both for user)
+    // TODO option to print recipe??
+    // TODO saving another users recipe into your own library
+    // TODO if no account when attempting to save, take them to register
     return (
         <>
             <nav className={style.nav}>
@@ -77,8 +80,15 @@ export default function VieWRecipe() {
                         <i className="fa-solid fa-ellipsis-vertical"></i>
                     </summary>
                     <menu>
-                        <li><Link to={`/recipes/${id}/edit`}>Edit</Link></li>
-                        <li><button onClick={handleDelete}>Delete</button></li>
+                    { recipe.user_id == loggedUser?.id ? 
+                        <>
+                            <li><Link to={`/recipes/${id}/edit`}>Edit</Link></li>
+                            <li><button onClick={handleDelete}>Delete</button></li>
+                        </>
+                        :
+                        <li><button onClick={() => navigate("/")}>Save</button></li> 
+                    }
+                    <li><button>Share</button></li>
                     </menu>
                 </details>
             </nav>
