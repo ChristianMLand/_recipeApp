@@ -16,11 +16,13 @@ export default function VieWRecipe() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        getRecipe(id).then(({ data }) => {
-            setRecipe(data);
-            initialRecipe.current = Object.freeze(data);
-            setCheckList(data.ingredients.map(() => false));
-        });
+        getRecipe(id)
+            .then(({ data }) => {
+                setRecipe(data);
+                initialRecipe.current = Object.freeze(data);
+                setCheckList(data.ingredients.map(() => false));
+            })
+            .catch(() => navigate("/404"));
     }, [id]);
 
     const handleCheck = (i, e) => {
