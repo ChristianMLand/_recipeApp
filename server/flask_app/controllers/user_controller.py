@@ -21,6 +21,7 @@ def get_logged_user():
 @validate_model(User)
 def register():
     logged_user = None
+    session.clear()
     if request.args.get("login"):
         logged_user = User.retrieve_one(email=request.json["login_email"].lower())
         session["id"] = logged_user.id
@@ -28,6 +29,7 @@ def register():
         user_data = {**request.json, "email": request.json["email"].lower()}
         session["id"] = User.create(**user_data)
         logged_user = User.retrieve_one(id=session["id"])
+    session.permanent = True
     return jsonify(logged_user.as_json())
 
 @app.delete("/api/auth")
