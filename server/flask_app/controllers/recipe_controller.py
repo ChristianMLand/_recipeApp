@@ -1,17 +1,26 @@
 from flask_app import app
-# from flask_app.models.student_model import Student
 from flask import jsonify, request, session
 from flask_app.models.recipe_model import Recipe
+from flask_app.models.user_model import User
+# from flask_app.models.collection_model import Collection
 from flask_app.controllers import validate_model, enforce_login
-from recipe_scrapers import scrape_me
+from recipe_scrapers import scrape_html
 from flask_app.util.unit_converter import standardize_units
+import requests
 
 
 @app.get("/api/recipes")
 @enforce_login
 def get_all_recipes():
+    # TODO add pagination?
     all_recipes = Recipe.retrieve_all(user_id=session["id"])
     return jsonify([recipe.as_json() for recipe in all_recipes])
+
+# @app.get("/api/collections")
+# @enforce_login
+# def get_all_collections():
+#     all_collections = Collection.retrieve_all(user_id=session["id"])
+#     return jsonify([collection.as_json() for collection in all_collections])
 
 # not enforcing login so that way we can share links to uploaded recipes
 @app.get("/api/recipes/<id>")
@@ -31,7 +40,10 @@ def delete_recipe(id):
 def create_recipe():
     if request.args.get("extract"):
         try:
-            scraper = scrape_me(request.json.get("url"), wild_mode=True)
+            url = request.json.get("url")
+            user = User.retrieve_one(id=session["id"])
+            html = requests.get(url, headers={"User-Agent": f"Recipe Saver {user.username}"}).content
+            scraper = scrape_html(html, org_url=url, wild_mode=True)
             # print(scraper.ingredients())
             data = {
                 "user_id" : session["id"],
