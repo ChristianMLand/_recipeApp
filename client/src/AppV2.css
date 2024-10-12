@@ -120,3 +120,9 @@ ul {
     padding: 0;
   }
 }
+
+@media (prefers-color-scheme: light) {
+  input, button {
+    color: var(--text-light)
+  }
+}
