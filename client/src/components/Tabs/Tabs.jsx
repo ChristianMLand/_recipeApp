@@ -37,7 +37,7 @@ export default function Tabs({ topOffset=0, children:tabs }) {
                 </li>
             )}
             </ul>
-            { cloneElement(tabs[active], { handlers }) }
+            { cloneElement(tabs[active], { handlers, key: active }) }
         </div>
     )
 }
