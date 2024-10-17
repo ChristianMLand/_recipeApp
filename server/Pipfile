@@ -13,6 +13,7 @@ psycopg2-binary = "*"
 python-dotenv = "*"
 gunicorn = "*"
 requests = "*"
+cloudinary = "*"
 
 [dev-packages]
 
