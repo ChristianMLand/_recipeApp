@@ -80,7 +80,8 @@ export default forwardRef(function RecipeForm({ initialRecipe, service, onSucces
         e.preventDefault();
         const fdata = new FormData(e.target);
         fdata.set("image", recipe.image || selectedFile)
-
+        fdata.set("ingredients", recipe.ingredients);
+        fdata.set("instructions", recipe.instructions);
         // const jData = {
         //     ...recipe,
         //     ingredients: recipe.ingredients.split("\n").filter(ing => ing),
