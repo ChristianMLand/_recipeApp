@@ -15,7 +15,7 @@
     z-index: 1;
     --top-offset: 0px;
     top: var(--top-offset);
-    background: #0c0d12;
+    background: var(--gradient-1);
     /* background: #21222B; */
 }
 
@@ -42,5 +42,5 @@
 .tabList h2.activeTab {
     color: var(--text-light);
     /* background: #646cff; */
-    border-bottom: 0.5rem solid var(--light-2);
+    border-bottom: 0.5rem solid var(--text-dark);
 }

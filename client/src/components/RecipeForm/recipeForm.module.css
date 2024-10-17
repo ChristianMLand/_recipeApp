@@ -13,13 +13,14 @@
 .form input {
     border-radius: 5px;
     padding: 0.5rem;
-    background: hsl(234, 20%, 2%);
-    border: 2px solid hsla(0, 0%, 100%, 0.25);
+    background: transparent;
+    border: 2px solid var(--text-dark);
     font-family: Arial, sans-serif;
 }
 
 .form input[type=file] {
     display: none;
+    visibility: hidden;
 }
 
 
@@ -43,8 +44,8 @@
 
 .form textarea, 
 .hidden {
-    background: hsl(234, 20%, 2%);
-    border: 2px solid hsla(0, 0%, 100%, 0.25);
+    background: transparent;
+    border: 2px solid var(--text-dark);
     font-family: Arial, sans-serif;
     overflow: hidden;
     line-height: 1.4rem;
@@ -52,7 +53,6 @@
     border-radius: 5px;
     padding: 0.5rem;
     padding-bottom: 0;
-    border: 2px solid rgba(255, 255, 255, 0.3);
     font-family: Arial, sans-serif;
 }
 
@@ -86,41 +86,71 @@
     }
 }
 
-/* for upload button on hover over preview image */
-.img__img {
-    flex: 1;
-    border-radius: 10px;
+.divider {
     width: 100%;
-}
-
-.img__wrap {
+    display: block;
+    border: 0;
+    line-height: 1em;
     position: relative;
+    text-align: center;
+    height: 1.5em;
+    font-size: 14px;
+    margin: 30px 15px;
+    background-color: inherit;
 }
 
-.img__description_layer {
+.divider::before {
+    content: "";
+    background: #434343;
     position: absolute;
-    border-radius: 10px;
-    top: 0;
-    bottom: 5px;
-    /* not sure why this is needed */
     left: 0;
-    right: 0;
-    /* inset: 0; */
-    background: rgba(93, 98, 237, 0.6);
-    color: #fff;
-    font-weight: bolder;
-    font-size: 22px;
-    visibility: hidden;
-    opacity: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    transition: opacity .2s, visibility .2s;
+    top: 50%;
+    width: 100%;
+    height: 2px;
 }
 
-.img__wrap:hover .img__description_layer,
-.img__wrap:active .img__description_layer {
-    visibility: visible;
-    opacity: 1;
+.divider::after {
+    content: attr(data-content);
+    position: relative;
+    padding: 0 7px;
+    line-height: 1.5em;
+    color: var(--text-dark);
+    background-color: inherit;
+}
+
+/* for upload button on hover over preview image */
+.imgContainer img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+}
+
+.hidden {
+    visibility: hidden !important;
+}
+
+.empty {
+    border: 2px var(--text-dark) dashed !important;
+}
+
+.imgContainer {
+    position: relative;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: grid;
+    place-content: center;
+    place-items: center;
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    cursor: pointer;
+}
+
+.imgContainer i {
+    font-size: 32px;
 }

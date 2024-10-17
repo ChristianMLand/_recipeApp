@@ -23,18 +23,15 @@
 }
 
 .form input {
-    background: #27282f;
-    border: none;
+    background: transparent;
+    border: 2px solid var(--text-dark);
     padding: 0.5rem;
-    border-radius: 3px;
-    color: var(--text-light);
+    border-radius: 5px;
 }
 
 .form button {
     margin-top: 0.5rem;
     background: var(--accent);
     padding: 0.25rem 1rem;
-    border: none;
-    color: var(--text-light);
     border-radius: 3px;
 }
