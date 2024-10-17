@@ -1,0 +1,39 @@
+.modal {
+    position: fixed;
+    left: 50%;
+    top: 25%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    display: grid;
+    place-items: center;
+    place-content: center;
+    padding: 3rem;
+    border: none;
+    box-shadow: 0px 8px 10px -5px #07080b;
+    border-radius: 10px;
+    background-color: var(--gradient-2);
+}
+
+.modal[open] {
+    opacity: 1;
+}
+
+.modal::backdrop {
+    background-color: color-mix(in srgb, black 40%, transparent);
+    backdrop-filter: blur(4px);
+}
+
+.modal>div {
+    display: flex;
+    gap: 1rem;
+}
+
+.modal>div>button {
+    background: var(--accent);
+    /* background: transparent; */
+    /* border: 2px solid #434343; */
+}
+
+.modal>input {
+    width: 100%;
+}

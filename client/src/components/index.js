@@ -10,3 +10,4 @@ export { default as Layout } from './Layout/Layout.jsx';
 export { default as Checkbox } from './IndeterminateCheckbox/IndeterminateCheckbox.jsx';
 export { default as FilterGroup } from './FilterGroup/FilterGroup.jsx';
 export { default as MultiSelect } from './MultiSelect/MultiSelect.jsx';
+export { default as Modal } from './Modal/Modal.jsx';
