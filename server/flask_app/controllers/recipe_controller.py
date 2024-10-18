@@ -82,7 +82,7 @@ def create_recipe():
             tmp,
             public_id=recipe_id,
             transformation=[
-                {"width": 750, "height": 750, "crop": "crop", "gravity": "auto"},
+                {"width": 750, "height": 750, "crop": "auto", "gravity": "auto"},
                 {"quality":"auto"},
                 {"fetch_format":"auto"}
             ]
@@ -110,7 +110,7 @@ def update_recipe(id):
                 img,
                 public_id=id,
                 transformation=[
-                    {"width": 750, "height": 750, "crop": "crop", "gravity": "auto"},
+                    {"width": 750, "height": 750, "crop": "auto", "gravity": "auto"},
                     {"quality":"auto"},
                     {"fetch_format":"auto"}
                 ]
