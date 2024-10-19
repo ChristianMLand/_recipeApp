@@ -57,7 +57,7 @@ def upload_image(image, recipe_id):
 
 def parse_recipe(url):
     html = requests.get(
-        url, headers={"User-Agent": f"Recipe Saver {session["id"]}"}
+        url, headers={"User-Agent": f"Recipe Saver {session['id']}"}
     ).content
     scraper = scrape_html(html, org_url=url, wild_mode=True)
     return {
