@@ -2,7 +2,7 @@ import { useParams, Link, useNavigate } from "react-router-dom"
 import { useState, useEffect, useRef } from 'react';
 import { getRecipe, deleteRecipe } from "~/services";
 import { useAuthContext, useIsMobile } from "~/hooks";
-import { Tabs, Tab } from "~/components";
+import { Tabs, Tab, Modal } from "~/components";
 import Fraction from 'fraction.js';
 import style from './viewRecipe.module.css';
 
@@ -67,6 +67,25 @@ export default function VieWRecipe() {
         }
     }
 
+    const handleShare = e => {
+        if (navigator.share) {
+            navigator.share({
+                title: recipe.title,
+                url: "https://recipes.christianland.dev/recipes/"+recipe.id
+            })
+            .catch(console.error);
+        } else {
+            modalRef.current.showModal();
+        }
+    }
+
+    const modalRef = useRef(null);
+
+    const handleCopy = () => {
+        navigator.clipboard.writeText("https://recipes.christianland.dev/recipes/"+recipe.id);
+        modalRef.current.close();
+    }
+
     if (!recipe) return <h1>Loading...</h1>
     // TODO recipe sharing (both for user)
     // TODO option to print recipe??
@@ -75,22 +94,33 @@ export default function VieWRecipe() {
     return (
         <>
             <nav className={style.nav}>
-                <Link to="/recipes"><i className="fa-solid fa-arrow-left"></i></Link>
+                <Link title="Go Back" to="/recipes"><i className="fa-solid fa-arrow-left"></i></Link>
                 <h2 title={recipe.title}>{recipe.title}</h2>
+                <Modal ref={modalRef}>
+                    <h3>Share a link to this recipe</h3>
+                    <div className={style.urlWrapper}>
+                        <input 
+                            title={"https://recipes.christianland.dev/recipes/"+recipe.id}
+                            type="url"
+                            value={"https://recipes.christianland.dev/recipes/"+recipe.id} 
+                        />
+                        <button title="Copy" type="button" onClick={handleCopy}><i className="fa-solid fa-copy" /></button>
+                    </div>
+                </Modal>
                 <details onBlur={handleBlur} className={style.menu}>
                     <summary>
                         <i className="fa-solid fa-ellipsis-vertical"></i>
                     </summary>
                     <menu>
-                    { recipe.user_id == loggedUser?.id ? 
-                        <>
-                            <li><Link to={`/recipes/${id}/edit`}>Edit</Link></li>
-                            <li><button onClick={handleDelete}>Delete</button></li>
-                        </>
-                        :
-                        <li><button onClick={() => navigate("/")}>Save</button></li> 
-                    }
-                    <li><button>Share</button></li>
+                        {recipe.user_id == loggedUser?.id ?
+                            <>
+                                <li><Link title="Edit" to={`/recipes/${id}/edit`}>Edit</Link></li>
+                                <li><button title="Delete" onClick={handleDelete}>Delete</button></li>
+                            </>
+                            :
+                            <li><button title="Save" onClick={() => navigate("/")}>Save</button></li>
+                        }
+                        <li><button title="Share" onClick={handleShare}>Share</button></li>
                     </menu>
                 </details>
             </nav>

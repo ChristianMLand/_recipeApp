@@ -225,6 +225,40 @@
     accent-color: var(--accent);
 }
 
+.urlWrapper {
+    display: flex;
+    border-radius: 5px;
+    border: 2px solid var(--text-dark);
+    overflow: hidden;
+    background: transparent;
+    width: fit-content;
+}
+
+.urlWrapper input {
+    background: transparent;
+    border: none;
+    outline: none;
+    margin: 0.5rem;
+    line-height: 2;
+}
+
+.urlWrapper button {
+    /* flex: 1; */
+    border-radius: 0px;
+    /* color: var(--text-light); */
+    background: var(--text-dark) !important;
+    /* color: var(--text-dark); */
+}
+
+.urlWrapper button:focus,
+.urlWrapper button:hover {
+    background: var(--accent) !important;
+}
+
+.urlWrapper:has(button:focus, button:hover) {
+    border-color: var(--accent);
+}
+
 @media screen and (max-width: 500px) {
     .container {
         max-width: 100vw;
