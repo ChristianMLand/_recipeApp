@@ -1,8 +1,9 @@
 ## Recipe collection App
------------------------
-Author: Christian Land
+> Author: Christian Land 2023
 
-[Live Site](https://www.recipes.christianland.dev/)
+Live Site: https://www.recipes.christianland.dev/
+
+Companion Browser Extension: https://addons.mozilla.org/en-US/firefox/addon/recipe-saver-extension/
 
 <img src="./recipe-phone-mockups.png" height="500" />
 
