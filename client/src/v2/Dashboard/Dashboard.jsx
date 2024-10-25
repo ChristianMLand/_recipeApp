@@ -36,9 +36,9 @@ export default function Dashboard() {
             {error && <span className="error">{error}</span>}
             <nav className={styles.nav}>
                 <h2>Cookbook</h2>
-                <Link to="/recipes/search"><i className="fa-solid fa-magnifying-glass" /></Link>
-                <Link to="/recipes/add" className={styles.roundBtn}><i className="fa-solid fa-plus" /></Link>
-                <button className={styles.btn} onClick={logout}><i className="fa fa-sign-out" aria-hidden="true" /></button>
+                <Link title="Search Recipes" to="/recipes/search"><i className="fa-solid fa-magnifying-glass" /></Link>
+                <Link title="Add Recipe" to="/recipes/add" className={styles.roundBtn}><i className="fa-solid fa-plus" /></Link>
+                <button title="Logout" className={styles.btn} onClick={logout}><i className="fa fa-sign-out" aria-hidden="true" /></button>
             </nav>
             <Tabs topOffset={0}>
                 <Tab title="All Recipes">
