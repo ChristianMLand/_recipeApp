@@ -9,7 +9,7 @@ export default function MultiSelect({ children, name, label }) {
         setOptions(Array.from(selectRef.current.options));
     }
 
-    useEffect(updateOptions, []);
+    useEffect(updateOptions, [children]);
 
     const handleRemove = i => {
         const option = selectRef.current.selectedOptions[i];
@@ -23,12 +23,18 @@ export default function MultiSelect({ children, name, label }) {
         updateOptions();
     }
 
+    const handleBlur = e => {
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+            e.currentTarget.open = false;
+        }
+    }
+
     return (
         <>
-            <details className={styles.details}>
+            <label htmlFor="">{label}:</label>
+            <details onBlur={handleBlur} className={styles.details}>
                 <summary>
                     <ul className={styles.list}>
-                        <li>{label}</li>
                         {options.filter(o => o.selected).map((o, i) => (
                             <li key={i}>
                                 <span>{o.innerText}</span>
