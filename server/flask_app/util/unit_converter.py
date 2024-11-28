@@ -108,14 +108,3 @@ def standardize_units(ingredient):
             else:
                 real_output.append(part)
     return " ".join(real_output)
-
-if __name__ == "__main__":
-    example_facts = [
-        ("cup", 16, "tbsp"),
-        ("tbsp", 3, "tsp"),
-    ]
-
-    # print(answer_query((2, "m", "in"), example_facts), 78.72)
-    # print(answer_query((13, "in", "m"), example_facts), 0.330)
-    # print(answer_query((13, "in", "hr"), example_facts), "not convertible!")
-    # print(answer_query((1, "hr", "sec"), example_facts), 3600)

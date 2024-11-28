@@ -1,24 +1,30 @@
 from flask_app import bcrypt
-from . import base_model
-from dataclasses import dataclass
+from . import Model, recipe_model, collection_model
 # from datetime import datetime
 import re
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
-@dataclass
-class User(base_model.Model):
+@Model("users")
+class User:
     id : int
     username : str
     email : str
     password : str
-    table = "users"
 
     @classmethod
     def create(cls, **data):
         data['password'] = bcrypt.generate_password_hash(data['password']).decode("utf-8")
         data.pop("confirm_password")
         return super().create(**data)
+
+    @property
+    def created_recipes(self):
+        return recipe_model.Recipe.retrieve_all(user_id=self.id)
+
+    @property
+    def created_collections(self):
+        return collection_model.Collection.retrieve_all(user_id=self.id)
     
     @staticmethod
     def validate(**data):

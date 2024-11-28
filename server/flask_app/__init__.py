@@ -4,6 +4,9 @@ from flask_bcrypt import Bcrypt
 from dotenv import load_dotenv
 import os
 import cloudinary
+from colorama import init
+
+init(autoreset=True)
 
 load_dotenv()
 
@@ -19,7 +22,11 @@ app.config.update(
     SESSION_COOKIE_SECURE=True
 )
 
+CORS(app, supports_credentials=True)
+bcrypt = Bcrypt(app)
 cloudinary.config(secure=True)
 
-bcrypt = Bcrypt(app)
-CORS(app, supports_credentials=True)
+from flask_app.models.base_model import ModelProvider
+
+app.json_provider_class = ModelProvider
+app.json = ModelProvider(app)
