@@ -8,6 +8,7 @@ import { useAuthContext } from '~/hooks';
 export default function Dashboard() {
     const navigate = useNavigate();
     const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
     const [recipes, setRecipes] = useState([]);
     const [collections, setCollections] = useState([]);
     const { loggedUser, logout } = useAuthContext();
@@ -15,7 +16,11 @@ export default function Dashboard() {
     useEffect(() => {
         if (!loggedUser) return;
         getRecipes({ params: { limit: 10 } }).then(({ data }) => {
+            console.log(data);
             setRecipes(data)
+        })
+        .catch(err => {
+            console.log("test", err)
         });
         getCollections().then(({ data }) => {
             setCollections(data);
@@ -28,7 +33,9 @@ export default function Dashboard() {
         e.preventDefault();
         const form = e.target;
         console.log(form.recipeUrl.value);
+        setLoading(true)
         const { data, error } = await extractRecipe({ url: form.recipeUrl.value });
+        setLoading(false);
         if (error) setError(error.error);
         else navigate(`/recipes/${data.id}/edit`);
     }
@@ -43,6 +50,8 @@ export default function Dashboard() {
             })
     }
 
+    if (!recipes?.length) return <h1>Loading...</h1>
+
     // plus/add button should take you to new recipe page if on all recipes tab or new collection page if on collections tab
     return (
         <main className={styles.container}>
@@ -53,7 +62,11 @@ export default function Dashboard() {
                     type="search"
                     placeholder="Paste a recipe URL"
                 />
-                <button><i className="fa-solid fa-arrow-right" /></button>
+                {
+                    loading ? 
+                    <button disabled><i class="fas fa-spinner fa-spin"></i></button> : 
+                    <button><i className="fa-solid fa-arrow-right" /></button>
+                }
             </form>
             {error && <span className="error">{error}</span>}
             <Modal ref={modalRef}>
