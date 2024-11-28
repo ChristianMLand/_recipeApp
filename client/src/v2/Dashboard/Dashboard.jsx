@@ -15,12 +15,8 @@ export default function Dashboard() {
 
     useEffect(() => {
         if (!loggedUser) return;
-        getRecipes({ params: { limit: 10 } }).then(({ data }) => {
-            console.log(data);
-            setRecipes(data)
-        })
-        .catch(err => {
-            console.log("test", err)
+        getRecipes({ params: { limit: 3 } }).then(({ data }) => {
+            setRecipes(data);
         });
         getCollections().then(({ data }) => {
             setCollections(data);
