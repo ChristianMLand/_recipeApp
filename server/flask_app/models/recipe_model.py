@@ -29,9 +29,9 @@ class Recipe:
                 SELECT recipes.* FROM recipes
                 {"WHERE " + cls.format_data(" AND ", data) if data else ""}
                 ORDER BY recipes.updated_at DESC
-                {"LIMIT " + limit if limit != None else ""}
-                {"OFFSET " + offset if offset != None else ""};
                 """
+                # {"LIMIT " + limit if limit != None else ""}
+                # {"OFFSET " + offset if offset != None else ""};
         rows = connect().run_query(query, data)
         return [cls(**row) for row in rows] if rows else []
 
