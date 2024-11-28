@@ -142,12 +142,14 @@
     margin: 0;
     height: 100%;
     width: 100%;
+    max-width: 500px;
+    text-align: center;
+    margin: auto;
     overflow: hidden;
     display: grid;
     place-content: center;
     place-items: center;
     aspect-ratio: 1 / 1;
-    width: 100%;
     cursor: pointer;
 }
 

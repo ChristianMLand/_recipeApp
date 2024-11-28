@@ -12,7 +12,7 @@ export default function NewRecipe() {
     return (
         <>
             <nav className={styles.nav}>
-                <Link to="/recipes"><i className="fa-solid fa-arrow-left"></i></Link>
+                <Link to="/dashboard"><i className="fa-solid fa-arrow-left"></i></Link>
                 <h2>Add Recipe</h2>
                 <button onClick={() => formRef.current.requestSubmit()} className={styles.btn}>Save</button>
             </nav>

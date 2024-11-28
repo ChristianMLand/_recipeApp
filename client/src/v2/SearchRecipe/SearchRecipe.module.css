@@ -37,6 +37,10 @@
     background: var(--accent);
 }
 
+.menu {
+    z-index: 10;
+}
+
 .menu > summary {
     cursor: pointer;
     list-style: none;
@@ -47,6 +51,7 @@
 }
 
 .menu > form {
+    left: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -55,7 +60,7 @@
     position: absolute;
     width: 100%;
     box-sizing: border-box;
-    right: 0;
+    /* right: 0; */
     top: 50px;
     background: var(--gradient-2);
     padding: 0.5rem;
@@ -89,6 +94,7 @@
     align-items: flex-end;
     border-radius: 5px;
     overflow: hidden;
+    z-index: 1;
 }
 
 .card a {

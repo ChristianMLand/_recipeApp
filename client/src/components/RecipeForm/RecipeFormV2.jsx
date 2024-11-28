@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState, forwardRef } from 'react';
-import { Tab, Tabs, ExpandingTextarea, Modal } from '~/components';
+import { Tab, Tabs, ExpandingTextarea, Modal, MultiSelect } from '~/components';
 import style from './recipeForm.module.css';
 import { useIsMobile } from '~/hooks';
 import { useNavigate } from 'react-router-dom';
+import { getCollections } from '~/services';
 
 // TODO use sessionStorage (works like localStorage) to keep track of form progress (clear after submitting)
 // TODO add preview image button so that it doesnt constantly try to update the image on keypress
@@ -52,9 +53,14 @@ export default forwardRef(function RecipeForm({ initialRecipe, service, onSucces
         return () => URL.revokeObjectURL(objectUrl);
     }, [selectedFile]);
 
-    // TODO upload file to cloudinary and then set image url to that url
-    // TODO make sure to delete image from cloudinary if they change image again
-    // TODO also make sure to delete image from cloudinary if they cancel editing/creating
+    const [allCollections, setAllCollections] = useState([])
+    
+    useEffect(() => {
+        getCollections().then(({ data }) => {
+            setAllCollections(data);
+        });
+    }, [])
+
     const handleSelectFile = e => {
         if (!e.target.files || e.target.files.length === 0) {
             setSelectedFile(undefined);
@@ -82,14 +88,7 @@ export default forwardRef(function RecipeForm({ initialRecipe, service, onSucces
         fdata.set("image", recipe.image || selectedFile)
         fdata.set("ingredients", recipe.ingredients);
         fdata.set("instructions", recipe.instructions);
-        // const jData = {
-        //     ...recipe,
-        //     ingredients: recipe.ingredients.split("\n").filter(ing => ing),
-        //     instructions: recipe.instructions.split("\n").filter(ins => ins),
-        //     image: recipe?.image || selectedFile
-        // }
         const { data, error } = await service(fdata);
-        console.log("ERROR", error);
         if (data && !error) onSuccess(data.id);
     }
 
@@ -140,6 +139,15 @@ export default forwardRef(function RecipeForm({ initialRecipe, service, onSucces
                 onChange={updateValue}
                 name="title"
             />
+            <MultiSelect name="collections" label="Select Collections">
+                {allCollections.map(collection => (
+                    <option 
+                        selected={initialRecipe?.collections.map(c => c.id).includes(collection.id)} 
+                        key={collection.id} 
+                        value={collection.id}
+                    >{collection.title}</option>
+                ))}
+            </MultiSelect>
             <label htmlFor='time'>Time in Minutes: </label>
             <input
                 placeholder="Time in minutes"

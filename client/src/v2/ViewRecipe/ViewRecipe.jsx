@@ -18,6 +18,7 @@ export default function VieWRecipe() {
     useEffect(() => {
         getRecipe(id)
             .then(({ data }) => {
+                if (!data) throw new Error("Invalid Recipe");
                 setRecipe(data);
                 initialRecipe.current = Object.freeze(data);
                 setCheckList(data.ingredients.map(() => false));
@@ -57,7 +58,7 @@ export default function VieWRecipe() {
 
     const handleDelete = () => {
         if (window.confirm('Are you sure you want to delete this recipe?')) {
-            deleteRecipe(id).then(() => navigate("/recipes"));
+            deleteRecipe(id).then(() => navigate("/dashboard"));
         }
     }
 
@@ -94,14 +95,16 @@ export default function VieWRecipe() {
     return (
         <>
             <nav className={style.nav}>
-                <Link title="Go Back" to="/recipes"><i className="fa-solid fa-arrow-left"></i></Link>
+                <Link title="Go Back" to="/dashboard"><i className="fa-solid fa-arrow-left"></i></Link>
                 <h2 title={recipe.title}>{recipe.title}</h2>
                 <Modal ref={modalRef}>
-                    <h3>Share a link to this recipe</h3>
+                    <label htmlFor="url">Share a link to this recipe</label>
                     <div className={style.urlWrapper}>
                         <input 
+                            id="url"
                             title={"https://recipes.christianland.dev/recipes/"+recipe.id}
                             type="url"
+                            readOnly
                             value={"https://recipes.christianland.dev/recipes/"+recipe.id} 
                         />
                         <button title="Copy" type="button" onClick={handleCopy}><i className="fa-solid fa-copy" /></button>
@@ -114,19 +117,25 @@ export default function VieWRecipe() {
                     <menu>
                         {recipe.user_id == loggedUser?.id ?
                             <>
-                                <li><Link title="Edit" to={`/recipes/${id}/edit`}>Edit</Link></li>
-                                <li><button title="Delete" onClick={handleDelete}>Delete</button></li>
+                                <li><Link title="Edit" to={`/recipes/${id}/edit`}><i className="fa-solid fa-pen-to-square"/>Edit</Link></li>
+                                <li><button title="Delete" onClick={handleDelete}><i className="fa-solid fa-trash" />Delete</button></li>
                             </>
                             :
                             <li><button title="Save" onClick={() => navigate("/")}>Save</button></li>
                         }
-                        <li><button title="Share" onClick={handleShare}>Share</button></li>
+                        <li><button title="Share" onClick={handleShare}><i className="fa-solid fa-share-nodes" />Share</button></li>
                     </menu>
                 </details>
             </nav>
             <main className={style.container}>
                 <div>
                     <img src={recipe.image} alt={recipe.title} />
+                    <h2>Collections:</h2>
+                    <ul className={style.collections}>
+                        {recipe.collections.map(c => (
+                            <li key={c.id}><Link to={`/collections/${c.id}`}>{c.title}</Link></li>
+                        ))}
+                    </ul>
                     <div className={style.topMid}>
                         <p>
                             <i className="fa-regular fa-clock"></i>

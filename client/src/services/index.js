@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const http = axios.create({
-    baseURL: '/api'
+    // baseURL: "http://localhost:8000/api",// change this when in dev mode to be absolute path
+    baseURL: '/api' 
 });
 
 http.defaults.withCredentials = true;
@@ -20,6 +21,8 @@ const serviceWrapper = func => {
     }
     return inner;
 }
+
+//TODO update all services to instead use the useREST hook
 
 export const getLoggedUser = serviceWrapper(
     async () => await http.get('/auth')
@@ -41,6 +44,26 @@ export const getRecipes = serviceWrapper(
     async (config={}) => await http.get("/recipes", config)
 );
 
+export const getCollections = serviceWrapper(
+    async (config={}) => await http.get("/collections", config)
+);
+
+export const getCollection = serviceWrapper(
+    async id => await http.get(`/collections/${id}`)
+);
+
+export const addCollection = serviceWrapper(
+    async data => await http.post("/collections", data)
+);
+
+export const editCollection = serviceWrapper(
+    async (id, data) => await http.patch("/collections/"+id, data)
+)
+
+export const deleteCollection = serviceWrapper(
+    async id => await http.delete(`/collections/${id}`)
+);
+
 export const getRecipe = serviceWrapper(
     async id => await http.get(`/recipes/${id}`)
 );
@@ -48,6 +71,7 @@ export const getRecipe = serviceWrapper(
 export const addRecipe = serviceWrapper(
     async data => await http.post("/recipes", data)
 );
+
 // for extracting a recipe from a webpage
 export const extractRecipe = serviceWrapper(
     async data => await http.post("/recipes?extract=true", data)

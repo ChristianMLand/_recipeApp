@@ -78,9 +78,75 @@
 }
 
 .roundBtn {
-    border-radius: 50%;
+    border-radius: 30px;
     background: var(--accent);
     padding: 0.1rem 0.6rem;
-    font-size: 1em;
+    font-size: 1rem;
+    font-weight: normal;
     color: var(--text-light);
+}
+
+.badge {
+    background: var(--accent);
+    border-radius: 50%;
+    padding: 0;
+    display: grid;
+    place-content: center;
+    place-items: center;
+    font-size: 1rem;
+    height: 30px;
+    width: 30px;
+    display: block;
+    color: var(--text-light);
+    font-weight: bold;
+}
+
+.modalForm {
+    display: flex;
+    gap: 0.5rem;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalForm input {
+    padding: 0.25rem;
+    height: fit-content;
+}
+
+.modalForm button {
+    padding: 0.25rem 0.75rem;
+    height: fit-content;
+}
+
+.divider {
+    width: 100%;
+    display: block;
+    border: 0;
+    line-height: 1em;
+    position: relative;
+    text-align: center;
+    height: 1.5em;
+    font-size: 14px;
+    margin: 30px 15px;
+    background-color: inherit;
+}
+
+.divider::before {
+    content: "";
+    background: #434343;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 2px;
+}
+
+.divider::after {
+    content: attr(data-content);
+    position: relative;
+    padding: 0 7px;
+    line-height: 1.5em;
+    color: var(--text-dark);
+    background-color: inherit;
 }

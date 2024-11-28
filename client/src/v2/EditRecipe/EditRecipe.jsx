@@ -18,7 +18,9 @@ export default function EditRecipe() {
     };
 
     useEffect(() => {
-        fetchRecipe().then(setRecipe);
+        fetchRecipe()
+            .then(setRecipe)
+            .catch(() => navigate("/404"));
     }, [id]);
 
     if (!recipe) return <h1>Loading...</h1>;
