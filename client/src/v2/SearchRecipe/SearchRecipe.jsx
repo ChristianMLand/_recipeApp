@@ -28,7 +28,7 @@ const sortMap = {
 }
 
 export default function SearchRecipe() {
-    const { data:allRecipes } = useDataFetcher((config={}) => getRecipes({ params: { limit: 20 }, ...config }), [], []);
+    const { data:allRecipes } = useDataFetcher((config={}) => getRecipes({ ...config }), [], []);
     console.log(allRecipes);
     const [searchTerm, setSearchTerm] = useState("");
     const [sortBy, setSortBy] = useState("alpha_asc")

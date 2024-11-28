@@ -14,7 +14,7 @@ export default function Dashboard() {
 
     useEffect(() => {
         if (!loggedUser) return;
-        getRecipes({ params: { limit: 3 } }).then(({ data }) => {
+        getRecipes({ params: { limit: 10 } }).then(({ data }) => {
             setRecipes(data)
         });
         getCollections().then(({ data }) => {
