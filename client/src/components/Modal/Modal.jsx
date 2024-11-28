@@ -1,7 +1,7 @@
 import styles from './Modal.module.css';
 import { forwardRef, useEffect, useId, useCallback } from 'react';
 
-export default forwardRef(function Modal({ children }, ref) {
+export default forwardRef(function Modal({ children, className }, ref) {
     const id = useId();
 
     const closeHandler = useCallback(e => {
@@ -20,7 +20,7 @@ export default forwardRef(function Modal({ children }, ref) {
     }, [id]);
     
     return (
-        <dialog id={id} ref={ref} className={styles.modal}>
+        <dialog id={id} ref={ref} className={`${styles.modal} ${className}`}>
             { children }
         </dialog>
     );
