@@ -2,6 +2,9 @@
 > Author: Christian Land 2023
 
 Live Site: https://www.recipes.christianland.dev/
+Test Account Credentials: 
+- Email: test@email.com
+- Password: password
 
 Companion Browser Extension: https://addons.mozilla.org/en-US/firefox/addon/recipe-saver-extension/
 
