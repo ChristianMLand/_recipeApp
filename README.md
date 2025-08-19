@@ -15,6 +15,7 @@ TECHNOLOGY USED
 - Python Flask Back-end
 - PostgreSQL CockRoachDB Database
 - Deployed with Render
+- Image uploads with Cloudinary
 -----------------------
 FEATURES
 -----------------------
@@ -31,6 +32,6 @@ FEATURES
         - [x] total time for the recipe
     - [x] before saving to your collection, you will have a chance to edit the scraped data in case there is anything missing or incorrect
 - [x] recipe calculator (adjust ingredient amounts based on desired number of servings)
-- [ ] be able to categorize your recipes into custom categories/labels for organization
-    - [ ] labels for things like type of food, what culture its from, main ingredient, etc
+- [x] be able to categorize your recipes into custom categories/labels for organization
+    - [x] labels for things like type of food, what culture its from, main ingredient, etc
 - [x] search saved recipes by title
